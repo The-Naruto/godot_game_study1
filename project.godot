@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Defense Viruses"
+run/main_scene="res://MapSecene_01.tscn"
+config/features=PackedStringArray("4.2", "C#", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameMain="*res://GameMain.cs"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Defense Viruses"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/player.en.translation", "res://localization/player.zh.translation")
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="wall"
+2d_physics/layer_3="bullet"
+2d_physics/layer_4="enemy"
+2d_physics/layer_5="drop_items"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,11 @@
+id,zh,en
+BasicHurt,基础伤害加成,BasicHurt
+BasicHurtMultiple,基础伤害倍数,BasicHurtMultiple
+Speed,速度,Speed
+NowHP,当前生命值,NowHP
+MaxHP,最大血量,MaxHP
+Level,当前等级,Level
+MaxExp,最大经验值,MaxExp
+NowExp,当前经验值,NowExp
+Gold,当前金币,Gold
+GoldGet,金币获取倍数,GoldGet

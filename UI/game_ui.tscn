@@ -1,0 +1,209 @@
+[gd_scene load_steps=6 format=3 uid="uid://blnm77fybtp1u"]
+
+[ext_resource type="StyleBox" uid="uid://do8dcd4js34oo" path="res://UI/game_ui.tres" id="1_7ia1q"]
+[ext_resource type="Script" path="res://UI/GameUI.cs" id="1_bbml0"]
+[ext_resource type="Texture2D" uid="uid://b2tx1nctmqly7" path="res://drop_items/asserts/gold.png" id="2_gtuvk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1xje"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu0e4"]
+bg_color = Color(0.168627, 0.623529, 0.470588, 1)
+
+[node name="game_ui" type="CanvasLayer" node_paths=PackedStringArray("hpValueBar", "expValueBar", "goldLable", "roundLable", "timeLable", "timer")]
+script = ExtResource("1_bbml0")
+hpValueBar = NodePath("MarginContainer/VBoxContainer/hp_value/HBoxContainer/hp_value_bar")
+expValueBar = NodePath("MarginContainer/VBoxContainer/exp_value/HBoxContainer/exp_value_bar")
+goldLable = NodePath("gold")
+roundLable = NodePath("count_down/now_round")
+timeLable = NodePath("count_down/time_show")
+timer = NodePath("count_down/Timer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 659.0
+offset_bottom = 143.0
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="hp_value" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/hp_value"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/hp_value/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "HP:
+"
+horizontal_alignment = 2
+
+[node name="hp_value_bar" type="ProgressBar" parent="MarginContainer/VBoxContainer/hp_value/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_f1xje")
+theme_override_styles/fill = ExtResource("1_7ia1q")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/hp_value/HBoxContainer/hp_value_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -11.5
+offset_right = 26.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "50/100
+"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/hp_value/HBoxContainer/hp_value_bar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -25.0
+offset_right = 272.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="exp_value" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/exp_value"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/exp_value/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "EXP:
+"
+horizontal_alignment = 2
+
+[node name="exp_value_bar" type="ProgressBar" parent="MarginContainer/VBoxContainer/exp_value/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_f1xje")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lu0e4")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/exp_value/HBoxContainer/exp_value_bar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "LV:1"
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/exp_value/HBoxContainer/exp_value_bar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -25.0
+offset_right = 272.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="gold" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 151.0
+offset_right = 251.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 25
+text = "100
+"
+
+[node name="Control" type="Control" parent="gold"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="gold/Control"]
+position = Vector2(-22, -0.5)
+scale = Vector2(3.48, 3.48)
+texture = ExtResource("2_gtuvk")
+
+[node name="count_down" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="now_round" type="Label" parent="count_down"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "第1回合
+"
+
+[node name="time_show" type="Label" parent="count_down"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = 47.0
+offset_right = 22.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "10
+"
+
+[node name="Timer" type="Timer" parent="count_down"]

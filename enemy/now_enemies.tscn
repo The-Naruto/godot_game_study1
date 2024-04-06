@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnw3gb27gn3t"]
+
+[ext_resource type="Script" path="res://enemy/NowEnemies.cs" id="1_kglgo"]
+
+[node name="NowEnemies" type="Node"]
+script = ExtResource("1_kglgo")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

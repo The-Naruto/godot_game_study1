@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://cccwc71f7g30"]
+
+[ext_resource type="Script" path="res://CharacterBase.cs" id="1_ncrfa"]
+[ext_resource type="Texture2D" uid="uid://b4wovtm0set3a" path="res://Asserts/player1/player1-sheet.png" id="2_8h8r2"]
+[ext_resource type="PackedScene" uid="uid://bye6ytuo0ap6" path="res://weapons/NowWeapons.tscn" id="3_xo0re"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeqa1"]
+atlas = ExtResource("2_8h8r2")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wpj0"]
+atlas = ExtResource("2_8h8r2")
+region = Rect2(240, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wy1g"]
+atlas = ExtResource("2_8h8r2")
+region = Rect2(480, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t3b7"]
+atlas = ExtResource("2_8h8r2")
+region = Rect2(720, 0, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45vft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeqa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wpj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wy1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t3b7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pbja1"]
+radius = 55.0
+height = 214.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f34jl"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+position = Vector2(-1, -1)
+scale = Vector2(0.5, 0.5)
+collision_mask = 3
+script = ExtResource("1_ncrfa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_45vft")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 25)
+shape = SubResource("CapsuleShape2D_pbja1")
+
+[node name="SropArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 24
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SropArea"]
+position = Vector2(-1, 25)
+shape = SubResource("CapsuleShape2D_pbja1")
+
+[node name="Node2D" parent="." instance=ExtResource("3_xo0re")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="take_drop_item" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="take_drop_item"]
+scale = Vector2(107.4, 107.4)
+shape = SubResource("CircleShape2D_f34jl")
+debug_color = Color(0.262745, 0.54902, 0.839216, 0.419608)
+
+[connection signal="body_entered" from="SropArea" to="." method="OnSropAreaBodyEntered"]
+[connection signal="mouse_entered" from="SropArea" to="." method="OnStopAreaEnter"]
+[connection signal="mouse_exited" from="SropArea" to="." method="OnStopAreaLeave"]
+[connection signal="body_entered" from="take_drop_item" to="." method="OnTakeDropItemBodyEntered"]
+[connection signal="body_exited" from="take_drop_item" to="." method="OnTakeDropItemBodyExited"]
